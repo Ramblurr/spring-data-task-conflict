@@ -10,7 +10,7 @@ This is a simple test case to demonstrate how spring-data-jpa and spring-cloud-t
 
 1. Edit `src/main/resources/application.properties` and configure your JDBC details. If you use a non-postgres DB, add the `runtime()` dep in build.gradle.
 
-## With `@EnableTask`
+## 1. With `@EnableTask`
 
 1. `gradle bootRun`
 
@@ -31,7 +31,7 @@ Total time: 32.716 secs
 Notice the two `select nextval` but no `insert`
 
 
-## Without `@EnableTask`
+## 2. Without `@EnableTask`
 
 1. Comment out the `@EnableTask` line in  `SpringDataTaskConflictApplication.java`
 2. `gradle bootRun`
@@ -50,3 +50,11 @@ Notice the two `select nextval` but no `insert`
 ```
 
 Here we see the two insert statements occurring as expected.
+
+## 3. (WORKAROUND) With `@EnableTask` and a manually instantiated transactionManager
+
+1. Re-add the `@EnableTask` annotation
+2. Uncomment the `entityManagerFactory` and `transactionManager` sections in the app
+3. `gradle bootRun`
+
+You will see that it works like in the previous case, but with cloud-task.

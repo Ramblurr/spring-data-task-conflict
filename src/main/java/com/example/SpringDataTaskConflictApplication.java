@@ -23,6 +23,21 @@ public class SpringDataTaskConflictApplication
     @Autowired
     PersonService personService;
 
+    /*
+     // THIS FIXES THE ISSUE
+    @Autowired
+    EntityManagerFactory entityManagerFactory;
+
+    @Bean
+    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory)
+    {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
+
+        return transactionManager;
+    }
+     */
+
     @Bean
     CommandLineRunner commandLineRunner()
     {
